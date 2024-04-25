@@ -1,0 +1,28 @@
+.profile-icon-box{
+    margin-top: -50px;
+    width : 150px;
+    background-color: var(--grey-skin);
+    z-index: 10;
+}
+.profile-icon-sized{
+    --camera-icon : 30px;
+    width: var(--camera-icon) !important; height: var(--camera-icon) !important;
+}
+.camera-icon, .remove-icon{
+    border-radius: 50%;
+    padding: .5rem;
+    position: relative;
+    right: -10px;
+    bottom: -10px;
+}
+.camera-icon{
+    color: var(--white);
+    background-color: var(--lightgrey);
+}
+.remove-icon{
+    color: var(--white);
+    background-color: var(--theme-bg);
+}
+.marg-pull-2x{
+    margin: -12%;
+}
