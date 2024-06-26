@@ -18,6 +18,7 @@ import clearpostcommentsAction from './Actions/clearpostcommentsAction';
 const PostCommentContainer = ({post_id, logged_in_user_id, post_category}) =>{
  
   const dispatch    = useDispatch();
+  const [isAddPostState, setIsAddPostState] = useState(true);
   //post new review comment memoized
   const memoizedpostnewComment  = useMemo(()=> {
     return PostCommentsController.getNewPostComment(post_id, post_category, logged_in_user_id);
@@ -39,15 +40,25 @@ const PostCommentContainer = ({post_id, logged_in_user_id, post_category}) =>{
       dispatch(clearpostcommentsAction(post_id));
     })
   },[]);
+
+
+  const setAddPostState = (state) =>{
+      setIsAddPostState(state);
+  }
   
   return (
     <div>
         {((lstofpostcomments) && (0 < Object.keys(lstofpostcomments).length)) &&
           Object.keys(lstofpostcomments).map((comment_id, index)=>{
-            return <ViewPostCommentComponent key={index} post_id = {post_id} comment_id = {comment_id}/>
+            return <ViewPostCommentComponent key={index} post_id = {post_id} comment_id = {comment_id} setAddPostState = {setAddPostState}/>
           })
         }
-        <PostCommentComponent postcomment = {memoizedpostnewComment} posttype={EnumPostReviewType.newPost} />
+        {(isAddPostState) &&
+          <PostCommentComponent postcomment = {memoizedpostnewComment} 
+                              posttype={EnumPostReviewType.newPost} 
+                              title=""
+                              setAddPostState={setAddPostState}       />
+        }
     </div>
   )
 }

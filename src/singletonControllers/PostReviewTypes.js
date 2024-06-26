@@ -15,7 +15,8 @@ const EnumPostCommentType = Object.freeze({
     subCURDPostSuccess        : "sub_CURD_post_comment_success",
     editreplypostcommentSuccess      : "reply_post_comment_edit_success",
     deletereplypostcommentSuccess   : "delete_reply_post_comment_success",
-    newReplyPostcommentSuccess: "new_reply_main_post_comment_success"
+    newReplyPostcommentSuccess: "new_reply_main_post_comment_success",
+    cancelEdit: "cancel_edit"
 })
 
 export default EnumPostCommentType;

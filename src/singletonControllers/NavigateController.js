@@ -9,7 +9,8 @@ const EnumNavigate = Object.freeze({
       followers         : "followers",
       following         : "following",
       searchposts       : "searchposts",
-      none              : "none"
+      none              : "none",
+      notification      : "notification"
       
 })
 

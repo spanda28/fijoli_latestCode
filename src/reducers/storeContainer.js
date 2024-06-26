@@ -364,6 +364,21 @@ export const storeComponent = (state = initialState, action) => {
             }
             return state;
         
+        case EnumPostCommentType.cancelEdit:
+            {
+                let lstofPosts = state.lstofPosts;
+                state = {...state, lstofPosts: {}};
+                let editcomment     = {};
+                Object.keys(lstofPosts).map(key=>{
+                    editcomment[key] = lstofPosts[key];
+                    Object.keys(editcomment[key].comments).map(cmtkey =>{
+                        editcomment[key].comments[cmtkey]["displayState"] = false;
+                    });
+                    return key;
+                });
+                state = {...state, lstofPosts: {...editcomment}};
+            }
+            return state;
         //create new reply post comment 
         case EnumPostCommentType.newReplyPostcommentSuccess:
             {
@@ -626,7 +641,11 @@ export const storeComponent = (state = initialState, action) => {
             delete action.data["status"];
             state = {...state, lstofPosts: action.data};
             return state;
-
+        
+        case "get_Notifications_success":
+            state = {...state, notificationInfo: action.data.result};
+            return state;
+            
         case "clear_block_users":
             delete state["lstofblockusers"];
             return state;

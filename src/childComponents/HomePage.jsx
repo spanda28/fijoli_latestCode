@@ -18,6 +18,7 @@ import SearchpostContainer from '../SearchPosts/SearchPostComponents/SearchpostC
 import clearErrorMessageAction from '../actions/clearErrorMessageAction';
 import DisplayMessage from '../DisplayMessageComponent/DisplayMessage';
 import actionloginUser from '../actions/actionloginUser';
+import NotificationInfo from '../Notifications/NotificationComponents/NotificationInfo';
 
 
 const HomePage = () => {
@@ -133,6 +134,12 @@ const HomePage = () => {
         {
           (navigateItemtype === EnumNavigate.searchposts) &&
           <SearchpostContainer user_id={loggedInUserInfo.user_id} />
+        }
+      </>
+      <>
+        {
+          (navigateItemtype === EnumNavigate.notification) &&
+          <NotificationInfo />
         }
       </>
       {

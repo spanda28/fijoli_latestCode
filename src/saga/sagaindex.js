@@ -193,6 +193,11 @@ const getData= (queryType, data) =>{
         case "get_search_post_item":
             response = serv.getsearchpostitem(data).then((result)=>result);
             break;
+        
+        case "get_Notifications":
+            response = serv.getNotifications(data).then((result)=>result);
+            break;
+
         default:
             break;
     }
@@ -620,6 +625,7 @@ function* postcomment(action){
             resulttype = EnumPostCommentType.deletereplypostcommentSuccess;
             break;
         default:
+            resulttype = action.mode;
             break;
     }
 
@@ -935,6 +941,29 @@ function* getsearchpostitem(action){
 
 function* actiongetsearchpostitem(){
     yield takeEvery("get_search_post_item", getsearchpostitem)
+}
+
+//edits/post based on category
+function* getNotifications(action){
+
+    const resp = yield call(getData, "get_Notifications", action);
+    const response = JSON.parse(JSON.stringify(resp.data));
+
+    if(200 !== response.status){
+        yield put({
+            type: "error_occurred",
+            data: "Error occurred while fetching the search item"
+        })   
+    }else{
+        yield put({
+            type: "get_Notifications_success",
+            data: response
+        })   
+    }
+}
+
+function* actiongetNotifications(){
+    yield takeEvery("get_Notifications", getNotifications)
 }
 
 // complete the SAGA middleware to export all SAGAs generator functions so that

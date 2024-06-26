@@ -13,7 +13,7 @@ import EnumPostCommentType from '../singletonControllers/PostReviewTypes';
 import getpostCommentAction from '../actions/getpostCommentAction';
 import "./PostCommentComponent.css";
 
-const PostCommentComponent = ({ postcomment, posttype, title }) => {
+const PostCommentComponent = ({ postcomment, posttype, title, setAddPostState }) => {
 
   const iconStyle = { fontSize: '45px' };
   const dispatch = useDispatch();
@@ -55,6 +55,22 @@ const PostCommentComponent = ({ postcomment, posttype, title }) => {
     // postcomment["comment_user_id"] = loggedInUser.user_id;
     dispatch(postCommentAction(postcomment, posttype));
     setpostcmtdesc("");
+    setAddPostState(true);
+  }
+
+  const handleCancelPostComment = () => {
+    switch(posttype)
+    {
+      case EnumPostCommentType.editMainPost:
+        dispatch({type: EnumPostCommentType.postcommenteditSuccess,
+                  post_id: postcomment.post_id,
+                  data: postcomment});
+        setAddPostState(true);
+        break;
+      default:
+        setpostcmtdesc("");
+        break;
+    }
   }
 
   return (
@@ -75,7 +91,7 @@ const PostCommentComponent = ({ postcomment, posttype, title }) => {
       <div className="flex--12">
         <div className="flex justify-end ypad-">
           <div className="">
-            <button className="anchor-outline rounded ao-grey-black-theme" onClick={()=>{}} >
+            <button className="anchor-outline rounded ao-grey-black-theme" onClick={handleCancelPostComment} >
               <span className="flex justify-center align-items-center">
                 <span>
                   Cancel

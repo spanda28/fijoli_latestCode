@@ -15,7 +15,7 @@ import EnumPostCommentLikeDisliketype from './models/EnumPostCommentLikeDisliket
 import postcommentlikedislikeAction from './Actions/postcommentlikedislikeAction';
 import { CircleImageTemplate, LikeIconTemplate, PostUserCallBlock } from '../helper/component_block';
 
-const ViewPostCommentComponent = ({ post_id, comment_id }) => {
+const ViewPostCommentComponent = ({ post_id, comment_id, setAddPostState }) => {
 
     const dispatch = useDispatch();
     // const navigate      = useNavigate();
@@ -74,6 +74,7 @@ const ViewPostCommentComponent = ({ post_id, comment_id }) => {
             case EnumPostCommentType.editMainPost:
                 setposttype(EnumPostCommentType.editMainPost);
                 setupdatedpostcomment(PostCommentsController.getEditPostComment(postcomment));
+                setAddPostState(false);
                 break;
 
             case EnumPostCommentType.deleteMainPost:
@@ -160,7 +161,7 @@ const ViewPostCommentComponent = ({ post_id, comment_id }) => {
             {
                 (EnumPostCommentType.editMainPost === posttype) &&
                 <>
-                    <PostCommentComponent title={"Edit Comment"} postcomment={updatedpostcomment} posttype={posttype} />
+                    <PostCommentComponent title={"Edit Comment"} postcomment={updatedpostcomment} posttype={posttype} setAddPostState={setAddPostState}/>
                     <div className="divider"></div>
                 </>
             }

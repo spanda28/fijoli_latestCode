@@ -180,7 +180,7 @@ const HomePageHeaderComponent = ({ userinfo, menutoggle, onMenuToggle }) => {
               </button>
             </div>
             <div>
-              <button onClick={(evt) => handleHdrPagevisibleState('')} className={["anchor-outline ao-grey-black-theme font-bold w"].join(" ")}>
+              <button onClick={(evt) => handleHdrPagevisibleState(EnumNavigate.notification)} className={["anchor-outline ao-grey-black-theme font-bold w"].join(" ")}>
                 <span className="flex text-center grow align-iems-center pad padyb">
                   <span><span className="nolh fa5 fa-bell"></span></span>
                 </span>

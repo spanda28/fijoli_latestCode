@@ -1,3 +1,9 @@
+
+import lheart from './../../src/asset/lheart.svg';
+import rheart from './../../src/asset/rheart.svg';
+import dislikeHeart from './../../src/asset/heart.svg';
+import rdislikeHeart from './../../src/asset/rDislikeheart.svg';
+
 export const LikeIconTemplate = (prop)=>{
     let {blockdata, onlike, ondislike} = prop;
     return (
@@ -8,7 +14,11 @@ export const LikeIconTemplate = (prop)=>{
                         <span>
                             <button onClick={onlike} className="anchor-outline rounded ao-grey-theme">
                                 <span className="flex text-center grow align-items-center h">
-                                    <span><i className={["fa5 fa5-heart"].join(" ")}></i></span>
+                                    {/* <span><i className={["fa5 fa5-heart"].join(" ")}></i></span> */}
+                                        {
+                                            (([blockdata.is_active, blockdata.reaction].join("")) === "11")? (<img src={rheart} className="view_image_pic" />) :
+                                            (<img src={lheart} className="view_image_pic" />)
+                                        }
                                 </span>
                             </button>
                         </span>
@@ -23,7 +33,12 @@ export const LikeIconTemplate = (prop)=>{
                             <button onClick={ondislike} className="anchor-outline rounded ao-grey-skin">
                                 <span className="flex text-center grow align-items-center h ">
                                     <span className='icon-sized-xss'>
-                                        <img alt="dislike" src={"/categoryImages/rDislikeheart.svg"} className="flex--12" />
+                                        {/* <img alt="dislike" src={"/categoryImages/rDislikeheart.svg"} className="flex--12" /> */}
+                                        {
+                                            (([blockdata.is_active, blockdata.reaction].join("")) === "10") ?
+                                            (<img src={rdislikeHeart} className="view_image_pic" />) :
+                                            (<img src={dislikeHeart} className="view_image_pic" />)
+                                        }
                                     </span>
                                 </span>
                             </button>

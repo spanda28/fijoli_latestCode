@@ -444,4 +444,14 @@ export class ApiService {
             return response;
         }
 
+        //returns followers users list
+        getNotifications(action){
+            const requestOptions = {
+                headers: { "Content-Type": "application/json" },
+            };
+            var baseurl = this.url + "getNotifications?user_id=" + action.user_id;
+            let response = axios.get(baseurl, requestOptions);
+            return response;
+        }
+        
 }
